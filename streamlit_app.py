@@ -43,7 +43,10 @@ if cmd_txt and cmd_txt != "":
         save(s)
         if s.returncode!= 0: 
             st.warning(f'non-zero return: {s.returncode}', icon="⚠️")
-        st.code(s.stdout.decode())
+        if s.stdout:
+            st.code(s.stdout.decode())
+        if s.stderr:
+            st.code(s.stderr.decode())
     except Exception as inst:
         st.error(inst)
 
